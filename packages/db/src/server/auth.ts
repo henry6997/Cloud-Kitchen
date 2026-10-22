@@ -56,13 +56,20 @@ export async function getAuthUser(app: AppName): Promise<AuthUser | null> {
 }
 
 export async function signIn(app: AppName, email: string, password: string): Promise<AuthResult> {
+  if (!supabaseConfigured() && process.env.NODE_ENV === "production" && process.env.ALLOW_DEMO !== "1") {
+    return { ok: false, error: "Sign-in is unavailable: the Supabase variables are missing on this deployment. Add them in Vercel and redeploy." };
+  }
   if (supabaseConfigured()) {
     const sb = await supabaseServer();
     const { data, error } = await sb.auth.signInWithPassword({ email, password });
-    if (error || !data.user) return { ok: false, error: error?.message.toLowerCase().includes("confirm") ? "Please verify your email first. Check your inbox." : GENERIC };
+    if (error || !data.user) {
+      console.error("signIn failed:", error?.message);
+      return { ok: false, error: error?.message.toLowerCase().includes("confirm") ? "Please verify your email first. Check your inbox." : GENERIC };
+    }
     if (app === "admin") {
       const profile = await getRepo().getProfile(data.user.id);
       if (profile?.role !== "owner") {
+        console.error("admin sign-in refused: profile missing or not owner for", data.user.id);
         await sb.auth.signOut();
         return { ok: false, error: GENERIC };
       }
