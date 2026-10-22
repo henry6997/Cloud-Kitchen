@@ -1,0 +1,30 @@
+{
+  "name": "@blip/admin",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001",
+    "typecheck": "node --max-old-space-size=4096 ../../node_modules/typescript/lib/tsc.js --noEmit"
+  },
+  "dependencies": {
+    "@blip/db": "workspace:*",
+    "@blip/ui": "workspace:*",
+    "@supabase/ssr": "^0.12.7",
+    "next": "^16.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@blip/config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "~5.9.3"
+  }
+}

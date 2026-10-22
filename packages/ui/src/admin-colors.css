@@ -1,0 +1,74 @@
+/* Colour audit (owner side only).
+   Status colours: one hue per stage so the queue scans at a glance. Yellow stays the single
+   "do something now" colour (New + primary buttons). Every text pair is >= 4.5:1, every bar/dot >= 3:1.
+   Scoped here so the customer app keeps the prototype palette untouched. */
+:root{
+  --mute:#6a645d;--line-strong:#9a9286;
+  --s-new-bg:#f8e9a6;--s-new-fg:#5e4800;--s-new-bar:#b07a00;--s-new-soft:#fbf3cf;
+  --s-prep-bg:#e1ebf5;--s-prep-fg:#2a5783;--s-prep-bar:#3b6ea5;
+  --s-ready-bg:#ebe5f4;--s-ready-fg:#5a3d8a;--s-ready-bar:#7a58b3;
+  --s-out-bg:#dcefec;--s-out-fg:#1d6762;--s-out-bar:#2a8a84;
+  --s-done-bg:#e0f0e6;--s-done-fg:#25693f;--s-done-bar:#2f8a5b;
+  --s-bad-bg:#f5dfdb;--s-bad-fg:#9c3024;--s-bad-bar:#b3382c;
+  --s-cash-bg:#f6e5c6;--s-cash-fg:#744500;--s-cash-bar:#b07a00;
+  --s-idle-bg:#ece6da;--s-idle-fg:#5f5a53;--s-idle-bar:#8d8579;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --mute:#a39e93;--line-strong:#77736a;
+  --s-new-bg:#484127;--s-new-fg:#f7dc6a;--s-new-bar:#f4d44d;--s-new-soft:#3a3520;
+  --s-prep-bg:#313c46;--s-prep-fg:#9cc4ee;--s-prep-bar:#6fa8e0;
+  --s-ready-bg:#3d3646;--s-ready-fg:#c7b2ee;--s-ready-bar:#a98be0;
+  --s-out-bg:#2a3e3a;--s-out-fg:#7bd8cf;--s-out-bar:#4fc0b6;
+  --s-done-bg:#2c3e33;--s-done-fg:#7fd4a6;--s-done-bar:#5cc08c;
+  --s-bad-bg:#4b332d;--s-bad-fg:#f59a88;--s-bad-bar:#ef7a64;
+  --s-cash-bg:#483c26;--s-cash-fg:#efc16f;--s-cash-bar:#e0a640;
+  --s-idle-bg:#2c2a26;--s-idle-fg:#b3aea3;--s-idle-bar:#77736a;
+}}
+:root[data-theme="dark"]{
+  --mute:#a39e93;--line-strong:#77736a;
+  --s-new-bg:#484127;--s-new-fg:#f7dc6a;--s-new-bar:#f4d44d;--s-new-soft:#3a3520;
+  --s-prep-bg:#313c46;--s-prep-fg:#9cc4ee;--s-prep-bar:#6fa8e0;
+  --s-ready-bg:#3d3646;--s-ready-fg:#c7b2ee;--s-ready-bar:#a98be0;
+  --s-out-bg:#2a3e3a;--s-out-fg:#7bd8cf;--s-out-bar:#4fc0b6;
+  --s-done-bg:#2c3e33;--s-done-fg:#7fd4a6;--s-done-bar:#5cc08c;
+  --s-bad-bg:#4b332d;--s-bad-fg:#f59a88;--s-bad-bar:#ef7a64;
+  --s-cash-bg:#483c26;--s-cash-fg:#efc16f;--s-cash-bar:#e0a640;
+  --s-idle-bg:#2c2a26;--s-idle-fg:#b3aea3;--s-idle-bar:#77736a;
+}
+
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.chip.s-new{background:var(--s-new-bg);color:var(--s-new-fg)}
+.chip.s-prep{background:var(--s-prep-bg);color:var(--s-prep-fg)}
+.chip.s-ready{background:var(--s-ready-bg);color:var(--s-ready-fg)}
+.chip.s-out{background:var(--s-out-bg);color:var(--s-out-fg)}
+.chip.s-done{background:var(--s-done-bg);color:var(--s-done-fg)}
+.chip.s-bad{background:var(--s-bad-bg);color:var(--s-bad-fg)}
+.chip.s-cash{background:var(--s-cash-bg);color:var(--s-cash-fg)}
+.chip.s-idle{background:var(--s-idle-bg);color:var(--s-idle-fg)}
+
+/* a new order is the one thing that wants attention */
+.trow.fresh{background:var(--s-new-soft);box-shadow:inset 4px 0 0 var(--s-new-bar)}
+.kpi.hot{background:var(--s-new-soft);border-color:var(--s-new-bar)}
+.kpi.hot small{color:var(--s-new-fg)}
+.htabs .dot{width:8px;height:8px;border-radius:50%;background:var(--dot,var(--s-idle-bar));flex:none}
+.htabs a[aria-current="page"] .dot{display:none}
+
+/* controls need a visible edge (3:1), not just a tint */
+.ad .field input,.ad .field select,.ad .field textarea,.ad .tools select,.ad .search,.logins .field input,.og input[type=text],.og input[type=number]{border-color:var(--line-strong)}
+.ad .sw[data-state="unchecked"]{border-color:var(--line-strong)}
+.ad .ib,.ad .btn.ghost,.ad .htabs a{border-color:var(--line-strong)}
+
+/* floating chrome: a light material, content scrolls under it */
+.topbar{background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%)}
+@media (prefers-reduced-transparency:reduce){.topbar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}}
+
+/* respond on press, not on release */
+.ad .btn,.ad .ib,.ad .htabs a{transition:transform .1s ease-out}
+.ad .btn:active,.ad .ib:active,.ad .htabs a:active,.logins .btn:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){.ad .btn,.ad .ib,.ad .htabs a{transition:none}.ad .btn:active,.ad .ib:active,.ad .htabs a:active{transform:none}}
+
+/* mid widths: drop secondary columns instead of crushing them */
+@media (max-width:1180px) and (min-width:861px){
+  .trow{grid-template-columns:var(--cols-md,var(--cols))}
+  .trow .hide-md{display:none}
+}

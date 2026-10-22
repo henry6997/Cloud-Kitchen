@@ -1,0 +1,49 @@
+/* Customer colour theme: warm cream, white cards, one red accent.
+   Loaded after styles.css by the customer app only; the dashboard keeps the yellow accent. */
+
+:root{--bg:#faf8f5;--card:#ffffff;--ink:#1f1a18;--mute:#6f6560;--line:#f1e1d7;--ph:#f8e6db;--y:#d9261c;--on-y:#ffffff;--dark:#1f1a18;--dark-ink:#faf8f5;--shadow:0 4px 14px rgba(120,40,20,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1a1210;--card:#261c19;--ink:#f6ece6;--mute:#b3a39b;--line:#3a2b26;--ph:#31241f;--y:#e5382d;--on-y:#ffffff;--dark:#f6ece6;--dark-ink:#1f1a18;--shadow:none}}
+:root[data-theme="dark"]{--bg:#1a1210;--card:#261c19;--ink:#f6ece6;--mute:#b3a39b;--line:#3a2b26;--ph:#31241f;--y:#e5382d;--on-y:#ffffff;--dark:#f6ece6;--dark-ink:#1f1a18;--shadow:none}
+
+/* text on the accent colour */
+.bdg,.step,.step button,.cb-go,.cta,.btn.primary{color:var(--on-y)}
+.btn.primary{background:var(--y);border-color:var(--y)}
+.cta.done{color:#fff}
+
+/* soft raised surfaces, as in the reference */
+.dish,.group,.card,.ocard,.status,.search,.ib,.pill,.sheet,.bar{box-shadow:var(--shadow)}
+.ib{border-color:transparent}
+.dish,.group,.card,.ocard,.status{border-color:transparent}
+
+/* buttons */
+.add{border-color:var(--y);color:var(--y);font-weight:600}
+.add:hover{background:var(--y);color:var(--on-y)}
+.step{box-shadow:none}
+.bar .step{color:var(--ink)}
+.bar .step button{color:var(--ink)}
+
+/* categories: selected gets a red ring */
+.cat[aria-pressed="true"]{color:var(--y)}
+.cat[aria-pressed="true"] .c{background:var(--card);border:2px solid var(--y)}
+.cat .c{box-shadow:var(--shadow);border-color:transparent}
+
+/* labels and links */
+.sec button,.sec a{color:var(--y);font-weight:500}
+.dish .tag,.hero .tag{background:var(--y);color:var(--on-y);font-weight:600}
+.dots i.on{background:var(--y)}
+.tabs [aria-current="page"]{color:var(--y)}
+.opt input{accent-color:var(--y)}
+.trk li.now .d{background:var(--y);border-color:var(--y);color:var(--on-y);box-shadow:0 0 0 4px var(--ph)}
+.chip.dark{background:var(--y);color:var(--on-y)}
+.confirm .tick{background:var(--y)}
+
+/* Cart and order flow keep the saturated yellow: cart bar, cart, checkout, tracking, orders. */
+:root{--cy:#f9c80e;--on-cy:#1f1a18}
+.cartbar .cb-go,.cta,.btn.primary,.crow .step{background:var(--cy);border-color:var(--cy);color:var(--on-cy)}
+.crow .step button{color:var(--on-cy)}
+.cta.done{background:var(--green);color:#fff}
+.cartbar .goal i,.goal.on-card i{background:var(--cy)}
+.cartbar .bdg,.ib .bdg{background:var(--cy);color:var(--on-cy)}
+.trk li.now .d{background:var(--cy);border-color:var(--cy);color:var(--on-cy)}
+.chip.dark{background:var(--dark);color:var(--dark-ink)}
+.confirm .tick{background:var(--green)}

@@ -1,0 +1,21 @@
+# Local Supabase (supabase start). Hosted projects use the dashboard instead.
+project_id = "blip"
+
+[db]
+port = 54322
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback", "http://localhost:3001"]
+enable_signup = true
+minimum_password_length = 8
+
+[auth.email]
+enable_confirmations = true
+
+[storage]
+file_size_limit = "10MiB"

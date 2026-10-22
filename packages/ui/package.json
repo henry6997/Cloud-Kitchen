@@ -1,0 +1,27 @@
+{
+  "name": "@blip/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles.css",
+    "./admin.css": "./src/admin.css",
+    "./theme-red.css": "./src/theme-red.css",
+    "./admin-colors.css": "./src/admin-colors.css"
+  },
+  "scripts": { "typecheck": "tsc -p . --noEmit" },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.0"
+  },
+  "peerDependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" },
+  "devDependencies": {
+    "@blip/config": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "~5.9.3"
+  }
+}

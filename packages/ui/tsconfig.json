@@ -1,0 +1,5 @@
+{
+  "extends": "@blip/config/tsconfig.next.json",
+  "compilerOptions": { "plugins": [] },
+  "include": ["src"]
+}

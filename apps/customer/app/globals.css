@@ -1,0 +1,18 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@import "@blip/ui/styles.css";
+@import "@blip/ui/theme-red.css";
+
+@source "../../../packages/ui/src";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-accent: var(--y);
+  --color-ok: var(--green);
+  --color-bad: var(--red);
+  --font-sans: var(--font-outfit);
+}
